@@ -1,0 +1,1 @@
+{"version":3,"sources":["app/admin/admin.module.js"],"names":["angular","module"],"mappings":"AAAA;;AAEAA,QAAQC,MAAR,CAAe,oBAAf,EAAqC,CAAC,mBAAD,EAAsB,SAAtB,CAArC","file":"admin.module.js","sourcesContent":["'use strict';\n\nangular.module('yeomanAppApp.admin', ['yeomanAppApp.auth', 'ngRoute']);\n"]}
