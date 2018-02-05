@@ -65,7 +65,7 @@ class AddmovieComponent {
   addMovie(){
     
     this.$http.post('/api/Movies', this.MovieData)
-    .then(response => {
+    .then((response) => {
       console.log(response);  
       if(response.data.code==11000)
       {

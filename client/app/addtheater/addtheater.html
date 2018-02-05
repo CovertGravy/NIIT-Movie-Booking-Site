@@ -14,4 +14,28 @@
             </form>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <caption>Theaters</caption>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>City</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = 'theater in addtheaterCtrl.TheaterList'>
+                        <td>{{theater.Name}}</td>
+                        <td>{{theater.Location}}</td>
+                        <td>{{theater.City}}</td>
+                        <td><button class="btn btn-danger" ng-click="addtheaterCtrl.deleteTheater(theater._id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
