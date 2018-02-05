@@ -1,1 +1,17 @@
-<div>This is the addtheater view.</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div class="form-group">
+                    <input type="text" ng-model="addtheaterCtrl.theater.name" class="form-control" placeholder="Theater Name">
+                    <br>
+                    <input type="text" ng-model="addtheaterCtrl.theater.location" class="form-control" placeholder="Location">
+                    <br>
+                    <input type="text" ng-model="addtheaterCtrl.theater.city" class="form-control" placeholder="city">
+                    <br>
+                    <input type="button" ng-click="addtheaterCtrl.addTheater()" class="btn btn-success" value="Add Theater">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

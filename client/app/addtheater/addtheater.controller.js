@@ -3,8 +3,20 @@
 (function(){
 
 class AddtheaterComponent {
-  constructor() {
+  constructor($http) {
     this.message = 'Hello';
+    this.$http = $http;
+  }
+
+  addTheater() {
+    if (this.theater) {
+      this.$http.post('/api/theaters', {
+        Name: this.theater.name,
+        Location: this.theater.location,
+        City: this.theater.city
+      });
+      this.theater = '';
+    }
   }
 }
 
