@@ -17,6 +17,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/cinema/cinema.socket').register(socket);
   require('../api/theater/theater.socket').register(socket);
   require('../api/Movie/Movie.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);

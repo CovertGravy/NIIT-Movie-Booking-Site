@@ -26,6 +26,8 @@ class AddmovieComponent {
   }
 
 
+
+
   showMovie(){
     console.log('api called');
     this.$http.get('/api/Movies').then((response) => {

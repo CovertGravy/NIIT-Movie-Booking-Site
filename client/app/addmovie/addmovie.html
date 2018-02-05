@@ -73,4 +73,13 @@
             </table>
         </div>
     </div>
+
+    <div class="col-md-6">
+            <div class="form-group">
+                <label for="movies">Select Movie:</label>
+                <select class="form-control" id="movies">
+                        <option ng-repeat="movie in addmovieCtrl.MovieList">{{movie.Title}}</option>
+                </select>
+            </div>
+        </div>
 </div>
