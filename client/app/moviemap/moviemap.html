@@ -1,14 +1,20 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="movies">Select Movie:</label>
-        <select class="form-control" id="movies">
+        <select ng-model="moviemapCtrl.movieS" class="form-control" id="movies">
                 <option ng-repeat="movie in moviemapCtrl.movie">{{movie.Title}}</option>
         </select>
         <br>
 
+        <label for="cities">Select City:</label>
+        <select ng-model="moviemapCtrl.cityS" class="form-control" id="cities">
+                <option ng-repeat="theater in moviemapCtrl.theater">{{theater.City}}</option>
+        </select>
+        <br>
+
         <label for="theaters">Select Theater:</label>
-        <select class="form-control" id="theaters">
-                <option ng-repeat="theater in moviemapCtrl.theater">{{theater.Name}}</option>
+        <select ng-model="moviemapCtrl.theaterS" class="form-control" id="theaters">
+                <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.cityS">{{theater.Name}}</option>
         </select>
     </div>
 </div>
