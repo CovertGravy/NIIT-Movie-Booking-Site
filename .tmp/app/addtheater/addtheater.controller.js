@@ -12,6 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.message = 'Hello';
       this.$http = $http;
       this.socket = socket;
+      this.theater = {};
     }
 
     _createClass(AddtheaterComponent, [{

@@ -1,7 +1,30 @@
 caption{
     height: 50px;
-    background-color: teal;
-    color: antiquewhite;
+    background-color: #435d7d;
+    color: #fff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 24px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 3px 3px 0 0;
+}
+
+th{
+    margin: auto;
+    font-size: 18px;
+    color: #435d7d;
+}
+
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+table.table tr th:first-child {
+    width: 250px;
+}
+
+table.table tr th:last-child {
+    width: 100px;
 }

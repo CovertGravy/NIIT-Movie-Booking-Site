@@ -7,6 +7,7 @@ class AddtheaterComponent {
     this.message = 'Hello';
     this.$http = $http;
     this.socket = socket; 
+    this.theater = {};
   }
 
   $onInit() {
