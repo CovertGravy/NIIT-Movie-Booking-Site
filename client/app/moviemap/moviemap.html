@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-5">
     <div class="form-group">
         <label for="movies">Select Movie:</label>
         <select ng-model="moviemapCtrl.movieS" class="form-control" id="movies">
@@ -16,5 +16,10 @@
         <select ng-model="moviemapCtrl.theaterS" class="form-control" id="theaters">
                 <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.cityS">{{theater.Name}}</option>
         </select>
+        <br>
+
+        <label for="dates">Select Dates: </label>
+        <br>
+        <input type="button" class="btn btn-danger days" ng-repeat="day in moviemapCtrl.dates" value="{{day}}">
     </div>
 </div>

@@ -13,6 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.movie = [];
       this.theater = [];
       this.$http = $http;
+      this.dates = [];
     }
 
     _createClass(MoviemapComponent, [{
@@ -29,6 +30,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _this.theater = response.data;
           console.log(_this.theater);
         });
+
+        var date = new Date();
+        var day = moment(date);
+        console.log(day);
+        var i;
+        for (i = 0; i < 6; i++) {
+          var x = 1;
+          this.dates[i] = day.add(x, 'd').format('MMM DD');
+          x++;
+        }
+
+        console.log(this.dates);
       }
     }]);
 

@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 (function(){
 
 class MoviemapComponent {
@@ -8,6 +10,7 @@ class MoviemapComponent {
     this.movie = [];
     this.theater = [];
     this.$http = $http;
+    this.dates = [];
   }
 
   $onInit(){
@@ -20,7 +23,22 @@ class MoviemapComponent {
     this.theater = response.data;
     console.log(this.theater);
   });
+  
+  var date = new Date();
+  var day = moment(date);
+  console.log(day);
+  var i;
+  for(i=0; i<6; i++){
+    var x = 1;
+    this.dates[i] = day.add(x, 'd').format('MMM DD');
+    x++;
+  }
+
+  console.log(this.dates);
+  
+  
 }
+  
 }
 
 angular.module('yeomanAppApp')
