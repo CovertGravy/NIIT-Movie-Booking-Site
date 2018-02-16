@@ -20,6 +20,11 @@
 
         <label for="dates">Select Dates: </label>
         <br>
-        <input type="button" class="btn btn-danger days" ng-repeat="day in moviemapCtrl.dates" value="{{day}}">
+        <div class="input-group-addon" ng-repeat="day in moviemapCtrl.dates">
+                <input type="checkbox" class="days" value="{{day}}">{{day}}
+        </div>
+        <br>
+        <input type="button" class="btn btn-info" value="Add dates" id="add_date">
+        
     </div>
 </div>

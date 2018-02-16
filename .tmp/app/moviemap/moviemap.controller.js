@@ -14,6 +14,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.theater = [];
       this.$http = $http;
       this.dates = [];
+
+      $(document).ready(function () {
+        $('#add_date').click(function () {
+          var datemap = [];
+          $('.days:checked').each(function () {
+            datemap.push($(this).val());
+          });
+          console.log(datemap);
+        });
+      });
     }
 
     _createClass(MoviemapComponent, [{
@@ -43,6 +53,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         console.log(this.dates);
       }
+
+      // datepicker(){
+      //   var clicked
+
+      //   console.log(this.clicked);
+
+      //   if(!this.clicked){
+      //     console.log('if started');
+      //     this.clicked = true;
+      //   }else{
+      //     console.log('else');
+      //     this.clicked = false;
+      //   }
+
+      // }
+
+      // $.noConflict();
+      // jQuery(document).ready(function($){
+      //     $("button").click(function(){
+      //         $("p").text("jQuery is still working!");
+      //     });
+      // });
+
     }]);
 
     return MoviemapComponent;
