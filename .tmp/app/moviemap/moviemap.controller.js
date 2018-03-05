@@ -114,8 +114,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }
     }, {
-      key: 'savedate',
-      value: function savedate() {
+      key: 'savetime',
+      value: function savetime() {
 
         var hh = this.data.h;
         var mm = this.data.m;
@@ -131,16 +131,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log('duplicate found');
           }
         }
+
         if (duplicate == true) {
           alert(tt + ' already added');
         } else {
-          // this.timings=tt;
           this.timings.push(tt);
-          // show(ttAr);
-          //  $scope.aa;
-          //$scope.aa=tt;
         }
+
         console.log(this.data);
+        console.log(this.timings);
+      }
+    }, {
+      key: 'deletetime',
+      value: function deletetime(time) {
+        var i = this.timings.indexOf(time);
+        this.timings.splice(i, 1);
         console.log(this.timings);
       }
 

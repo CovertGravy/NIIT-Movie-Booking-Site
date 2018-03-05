@@ -22,7 +22,7 @@
         <label for="dates">Select Dates: </label>
         <br>
         <div class="input-group-addon" ng-repeat="day in moviemapCtrl.dates">
-                <input type="checkbox" class="days" value="{{day}}">{{day}}
+                <input type="checkbox" class="days" value="{{day}}"> {{day}}
         </div>
         <br>
         <input type="button" class="btn btn-info" value="Add dates" id="add_date">
@@ -30,24 +30,23 @@
         <br>
 
         <label for="time">Select Show Timings: </label>
-        <select name="hour" id="hour" ng-model="moviemapCtrl.data.h">
+        <select name="hour" id="hour" ng-model="moviemapCtrl.data.h" ng-init="moviemapCtrl.data.h = '01'">
                 <option ng-repeat="h in moviemapCtrl.hour">{{h}}</option>
         </select>
-        <select name="min" id="min" ng-model="moviemapCtrl.data.m">
+        <select name="min" id="min" ng-model="moviemapCtrl.data.m" ng-init="moviemapCtrl.data.m = '00'">
                 <option ng-repeat="m in moviemapCtrl.min">{{m}}</option>
         </select>
-        <select name="ampm" id="ampm" ng-model="moviemapCtrl.data.ampm">
+        <select name="ampm" id="ampm" ng-model="moviemapCtrl.data.ampm" ng-init="moviemapCtrl.data.ampm = 'AM'">
                 <option>AM</option>
                 <option>PM</option>
         </select>
 
-        <input ng-click="moviemapCtrl.savedate()" type="button" value="Save" class="btn btn-info" id="add_time">
+        <input ng-click="moviemapCtrl.savetime()" type="button" value="Save" class="btn btn-info" id="add_time">
         <br>
         <!-- <ul>
                 <li ng-repeat="t in moviemapCtrl.timings">{{6+8}}</li>
         </ul> -->
-        <div ng-repeat="t in moviemapCtrl.timings">{{t}}</div>
-        <div>{{moviemapCtrl.data.movieS}}</div>
+        <div class="input-group-addon" ng-repeat="t in moviemapCtrl.timings">{{t}}<span ng-click="moviemapCtrl.deletetime('{{t}}')" class="glyphicon glyphicon-remove pull-right"></span></div>
 
         <button type="submit" class="btn btn-success" ng-click="moviemapCtrl.submit()">Submit</button>
         

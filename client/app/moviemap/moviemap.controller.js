@@ -109,15 +109,15 @@ $(document).ready(function(){
   var l;
   for(l=0; l<12; l++){
     this.min[l] = l*5;
-    if(this.min[l] < 10){
-      this.min[l] = '0' + l*5;
-    }
+      if(this.min[l] < 10){
+        this.min[l] = '0' + l*5;
+      }
   }
   
 }
 
 
-savedate(){
+savetime(){
 
     var hh = this.data.h;
     var mm = this.data.m;
@@ -133,16 +133,20 @@ savedate(){
         console.log('duplicate found');
       }
     }
+
     if(duplicate == true){
       alert(tt+' already added');
     }else{
-    // this.timings=tt;
       this.timings.push(tt);
-     // show(ttAr);
-    //  $scope.aa;
-      //$scope.aa=tt;
     }
-  console.log(this.data);
+
+    console.log(this.data);
+    console.log(this.timings);
+}
+
+deletetime(time){
+  var i = this.timings.indexOf(time);
+  this.timings.splice(i,1);
   console.log(this.timings);
 }
 
