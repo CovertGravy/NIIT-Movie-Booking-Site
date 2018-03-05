@@ -1,20 +1,21 @@
+<div class="container">
 <div class="col-md-5">
     <div class="form-group">
         <label for="movies">Select Movie:</label>
-        <select ng-model="moviemapCtrl.movieS" class="form-control" id="movies">
+        <select ng-model="moviemapCtrl.data.movieS" class="form-control" id="movies">
                 <option ng-repeat="movie in moviemapCtrl.movie">{{movie.Title}}</option>
         </select>
         <br>
 
         <label for="cities">Select City:</label>
-        <select ng-model="moviemapCtrl.cityS" class="form-control" id="cities">
+        <select ng-model="moviemapCtrl.data.cityS" class="form-control" id="cities">
                 <option ng-repeat="theater in moviemapCtrl.theater">{{theater.City}}</option>
         </select>
         <br>
 
         <label for="theaters">Select Theater:</label>
         <select ng-model="moviemapCtrl.theaterS" class="form-control" id="theaters">
-                <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.cityS">{{theater.Name}}</option>
+                <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.data.cityS">{{theater.Name}}</option>
         </select>
         <br>
 
@@ -25,6 +26,32 @@
         </div>
         <br>
         <input type="button" class="btn btn-info" value="Add dates" id="add_date">
+        <br>
+        <br>
+
+        <label for="time">Select Show Timings: </label>
+        <select name="hour" id="hour" ng-model="moviemapCtrl.data.h">
+                <option ng-repeat="h in moviemapCtrl.hour">{{h}}</option>
+        </select>
+        <select name="min" id="min" ng-model="moviemapCtrl.data.m">
+                <option ng-repeat="m in moviemapCtrl.min">{{m}}</option>
+        </select>
+        <select name="ampm" id="ampm" ng-model="moviemapCtrl.data.ampm">
+                <option>AM</option>
+                <option>PM</option>
+        </select>
+
+        <input ng-click="moviemapCtrl.savedate()" type="button" value="Save" class="btn btn-info" id="add_time">
+        <br>
+        <!-- <ul>
+                <li ng-repeat="t in moviemapCtrl.timings">{{6+8}}</li>
+        </ul> -->
+        <div ng-repeat="t in moviemapCtrl.timings">{{t}}</div>
+        <div>{{moviemapCtrl.data.movieS}}</div>
+
+        <button type="submit" class="btn btn-success" ng-click="moviemapCtrl.submit()">Submit</button>
+        
         
     </div>
+</div>
 </div>
