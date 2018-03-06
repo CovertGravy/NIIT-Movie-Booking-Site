@@ -3,11 +3,40 @@ input{
 }
 
 span{
-    margin-right: 0px;
+    padding-top: 3px;
     cursor: pointer;
 }
 
 .pretty{
     margin: 3px 3px 20px 3px;
+}
+
+.boxes{
+    background: #000;
+    color: cornsilk;
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+    padding: 5px;
+    width: 90px;
+    height: 30px;
+    border-radius: 5%;
+    border: 1px solid black;
+}
+
+.small{
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+label{
+    display: block;
+}
+
+.submit{
+    margin-top: 10px;
+    margin-left: 50%;
 }
     

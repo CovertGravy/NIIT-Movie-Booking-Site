@@ -147,8 +147,45 @@ savetime(){
 
 deletetime(time){
   var i = this.timings.indexOf(time);
+  console.log(time);
   this.timings.splice(i,1);
   console.log(this.timings);
+}
+
+submit(){
+  var datemap = [];
+      $('.days:checked').each(function(){
+        datemap.push($(this).val());
+      });
+      if(datemap.length == 0){
+        alert('No date selected');
+      }
+      console.log(datemap);
+
+  var items = {
+    title: this.data.movieS,
+    city: this.data.cityS,
+    theater: this.data.theaterS,
+    dates: datemap,
+    times: this.timings
+  };
+  var valid = true;
+  var check = Object.values(items);
+  var check1 = Object.keys(items);
+
+  for(var i=0; i<check.length; i++){
+  
+    if(Array.isArray(check[i])){
+      if(check[i].length == 0){
+        valid = false;
+      }
+    }else{
+      if(check[i] == undefined){
+        valid = false;
+      }
+    }
+  }
+  console.log(valid);
 }
 
 // datepicker(){
