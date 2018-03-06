@@ -1,1 +1,1 @@
-{"version":3,"sources":["moviemap.css"],"names":[],"mappings":"AAAA,MAAM,aAAa,CAAC","file":"moviemap.css","sourcesContent":["input{margin:0 auto}"]}
+{"version":3,"sources":["moviemap.css"],"names":[],"mappings":"AAAA,MAAM,aAAa,CAAC,KAAK,eAAe,cAAc,CAAC","file":"moviemap.css","sourcesContent":["input{margin:0 auto}span{margin-right:0;cursor:pointer}"]}

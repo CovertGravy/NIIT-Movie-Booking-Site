@@ -21,12 +21,18 @@
 
         <label for="dates">Select Dates: </label>
         <br>
-        <div class="input-group-addon" ng-repeat="day in moviemapCtrl.dates">
-                <input type="checkbox" class="days" value="{{day}}"> {{day}}
+        
+        <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="day in moviemapCtrl.dates">
+                <input type="checkbox" class="days" value="{{day}}" />
+                <div class="state p-primary">
+                        <i class="icon glyphicon glyphicon-ok"></i>
+                        <label>{{day}}</label>
+                </div>
         </div>
-        <br>
+        
+        <!-- <br>
         <input type="button" class="btn btn-info" value="Add dates" id="add_date">
-        <br>
+        <br> -->
         <br>
 
         <label for="time">Select Show Timings: </label>
@@ -41,14 +47,14 @@
                 <option>PM</option>
         </select>
 
-        <input ng-click="moviemapCtrl.savetime()" type="button" value="Save" class="btn btn-info" id="add_time">
+        <input ng-click="moviemapCtrl.savetime()" type="button" value="Save" class="btn btn-info btn-sm" id="add_time">
         <br>
         <!-- <ul>
                 <li ng-repeat="t in moviemapCtrl.timings">{{6+8}}</li>
         </ul> -->
         <div class="input-group-addon" ng-repeat="t in moviemapCtrl.timings">{{t}}<span ng-click="moviemapCtrl.deletetime('{{t}}')" class="glyphicon glyphicon-remove pull-right"></span></div>
 
-        <button type="submit" class="btn btn-success" ng-click="moviemapCtrl.submit()">Submit</button>
+        <button type="submit" class="btn btn-success btn-lg" ng-click="moviemapCtrl.submit()">Submit</button>
         
         
     </div>

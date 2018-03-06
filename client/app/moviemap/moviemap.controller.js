@@ -23,17 +23,17 @@ class MoviemapComponent {
 //--------------------------------------------------------------------------------------------------
 
 
-$(document).ready(function(){
-  $('#add_date').click(function(){
-    var datemap = [];
-    $('.days:checked').each(function(){
-      datemap.push($(this).val());
+  $(document).ready(function(){
+    $('#add_date').click(function(){
+      var datemap = [];
+      $('.days:checked').each(function(){
+        datemap.push($(this).val());
+      });
+      if(datemap.length == 0){
+        alert('No date selected');
+      }
+      console.log(datemap);
     });
-    if(datemap.length == 0){
-      alert('No date selected');
-    }
-    console.log(datemap);
-  });
 
   // $('#add_time').click(function(){
   //   var hh = $('#hour').val();
@@ -76,9 +76,9 @@ $(document).ready(function(){
 
 
 //-----------------------------------------------------------------------------------------------------------
-    this.$http.get('/api/Movies').then((response) => {
-      this.movie = response.data;
-      console.log(this.movie);
+  this.$http.get('/api/Movies').then((response) => {
+    this.movie = response.data;
+    console.log(this.movie);
   });
 
   this.$http.get('/api/theaters').then((response) => {
@@ -89,6 +89,7 @@ $(document).ready(function(){
   var date = new Date();
   var day = moment(date);
   console.log(day);
+  
   var i;
   for(i=0; i<6; i++){
     this.dates[i] = day.add(1, 'd').format('MMM DD');

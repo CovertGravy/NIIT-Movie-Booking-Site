@@ -88,6 +88,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var date = new Date();
         var day = moment(date);
         console.log(day);
+
         var i;
         for (i = 0; i < 6; i++) {
           this.dates[i] = day.add(1, 'd').format('MMM DD');
