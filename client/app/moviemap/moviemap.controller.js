@@ -11,6 +11,7 @@ class MoviemapComponent {
     this.socket = socket;
     this.movie = [];
     this.theater = [];
+    this.city = [];
     this.$http = $http;
     this.dates = [];
     this.hour = [];
@@ -83,7 +84,15 @@ class MoviemapComponent {
 
   this.$http.get('/api/theaters').then((response) => {
     this.theater = response.data;
+    var cities = [];
+    for(var i = 0; i<this.theater.length; i++){
+      if(cities.indexOf(this.theater[i].City) == -1){
+        cities.push(this.theater[i].City);
+      }
+    }
     console.log(this.theater);
+    console.log(cities);
+    this.city = cities;
   });
   
   var date = new Date();

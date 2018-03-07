@@ -14,6 +14,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.socket = socket;
       this.movie = [];
       this.theater = [];
+      this.city = [];
       this.$http = $http;
       this.dates = [];
       this.hour = [];
@@ -82,7 +83,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.$http.get('/api/theaters').then(function (response) {
           _this.theater = response.data;
+          var cities = [];
+          for (var i = 0; i < _this.theater.length; i++) {
+            if (cities.indexOf(_this.theater[i].City) == -1) {
+              cities.push(_this.theater[i].City);
+            }
+          }
           console.log(_this.theater);
+          console.log(cities);
+          _this.city = cities;
         });
 
         var date = new Date();
