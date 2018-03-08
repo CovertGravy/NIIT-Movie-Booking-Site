@@ -9,6 +9,7 @@ class MoviemapComponent {
     this.message = 'Hello';
     this.$scope = $scope;
     this.socket = socket;
+    this.cinemas = [];
     this.movie = [];
     this.theater = [];
     this.city = [];
@@ -18,23 +19,11 @@ class MoviemapComponent {
     this.min = [];
     this.timings = [];
     this.data = {};
+    this.poster;
   }
 
   $onInit(){
 //--------------------------------------------------------------------------------------------------
-
-
-  $(document).ready(function(){
-    $('#add_date').click(function(){
-      var datemap = [];
-      $('.days:checked').each(function(){
-        datemap.push($(this).val());
-      });
-      if(datemap.length == 0){
-        alert('No date selected');
-      }
-      console.log(datemap);
-    });
 
   // $('#add_time').click(function(){
   //   var hh = $('#hour').val();
@@ -62,7 +51,7 @@ class MoviemapComponent {
   //   console.log(this.timings);
     
   // });
-});
+
 
 
     //$digest or $apply
@@ -93,6 +82,12 @@ class MoviemapComponent {
     console.log(this.theater);
     console.log(cities);
     this.city = cities;
+  });
+
+  this.$http.get('/api/cinemas').then((response) => {
+      this.cinemas = response.data;
+      console.log(this.cinemas);
+      this.socket.syncUpdates('cinema', this.cinemas);
   });
   
   var date = new Date();
@@ -161,6 +156,26 @@ deletetime(time){
   console.log(this.timings);
 }
 
+deleteCinema(id){
+    if(confirm("Click OK to confirm deletion or Cancel to abort.")){
+      this.$http.delete('/api/cinemas/'+id).then((response) => {
+        alert('Cinema Deleted Successfully!');
+      });
+    }else{
+      alert('Action aborted');
+    }
+  }
+
+getPoster(){
+    var index = this.movie.findIndex(item => item.Title === this.data.movieS);
+    console.log(index);
+    if(index !== -1){
+        this.poster = this.movie[index].Poster;
+        console.log(this.poster);
+    }
+    
+}
+
 submit(){
   var datemap = [];
       $('.days:checked').each(function(){
@@ -171,6 +186,7 @@ submit(){
       }
       console.log(datemap);
 
+  
   var items = {
     title: this.data.movieS,
     city: this.data.cityS,
@@ -195,6 +211,81 @@ submit(){
     }
   }
   console.log(valid);
+  
+
+  var cinema = this.cinemas;
+  var dateCheck = true;
+  var timeCheck = true;
+  
+  var sameD = [];
+  var sameT = [];
+  for(var i=0; i<this.cinemas.length; i++){
+      
+      console.log(cinema[i].movie);
+      if(cinema[i].movie.theaters.city == items.city && cinema[i].movie.theaters.name == items.theater){
+        var d1 = cinema[i].movie.theaters.dates;
+        var t1 = cinema[i].movie.theaters.time;
+        for(var i=0; i<d1.length; i++){
+            if(items.dates.indexOf(d1[i]) !== -1){
+                console.log('same dates '+ d1[i]);
+                dateCheck = false;
+                sameD.push(d1[i]);
+            }
+        }
+
+        for(var i=0; i<t1.length; i++){
+            if(items.times.indexOf(t1[i]) !== -1){
+                console.log('same timings '+ t1[i]);
+                timeCheck = false;
+                sameT.push(t1[i]);
+            }
+        }
+      }
+      
+  }
+
+    var booked = function(){
+        if(dateCheck && timeCheck){
+            return true;
+        }else if(timeCheck){
+            return true;
+        }else if(dateCheck){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+  if(valid && booked()){
+      console.log(booked());
+    this.$http.post('/api/cinemas', {
+      movie: {
+        title: items.title,
+        // imdb: this.movie[index].imdb_id,
+        theaters: {
+          name: items.theater,
+          city: items.city,
+          dates: items.dates,
+          time: items.times
+        }
+    
+      }
+    }).then((response) => {
+      alert('Success!');
+      this.data.movieS = '';
+      this.data.theaterS = '';
+      this.data.cityS = '';
+      $('.days:checked').each(function(){
+        this.checked = false;
+      });
+      datemap = [];
+      this.timings = [];
+    });
+  }else if(!dateCheck && !timeCheck){
+      alert('Theater is booked for ['+sameD+'] on time['+sameT+']');
+  }else{
+      alert('Details Missing');
+  }
 }
 
 // datepicker(){

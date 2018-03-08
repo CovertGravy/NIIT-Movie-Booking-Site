@@ -12,6 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.message = 'Hello';
       this.$scope = $scope;
       this.socket = socket;
+      this.cinemas = [];
       this.movie = [];
       this.theater = [];
       this.city = [];
@@ -21,6 +22,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.min = [];
       this.timings = [];
       this.data = {};
+      this.poster;
     }
 
     _createClass(MoviemapComponent, [{
@@ -30,46 +32,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         //--------------------------------------------------------------------------------------------------
 
+        // $('#add_time').click(function(){
+        //   var hh = $('#hour').val();
+        //   var mm = $('#min').val();
+        //   var ampm = $('#ampm').val();
+        //   var tt = hh+':'+mm+' '+ampm;
+        //   console.log(tt);
+        //   var i;
+        //   for(i=0; i<ttAr.length; i++){
+        //     var duplicate = false;
+        //     if(tt == ttAr[i]){
+        //       duplicate = true;
+        //       console.log('duplicate found');
+        //     }
+        //   }
+        //   if(duplicate == true){
+        //     alert(tt+' already added');
+        //   }else{
+        //   // this.timings=tt;
+        //     ttAr.push(tt);
+        //    // show(ttAr);
+        //   //  $scope.aa;
+        //     //$scope.aa=tt;
+        //   }
+        //   console.log(this.timings);
 
-        $(document).ready(function () {
-          $('#add_date').click(function () {
-            var datemap = [];
-            $('.days:checked').each(function () {
-              datemap.push($(this).val());
-            });
-            if (datemap.length == 0) {
-              alert('No date selected');
-            }
-            console.log(datemap);
-          });
+        // });
 
-          // $('#add_time').click(function(){
-          //   var hh = $('#hour').val();
-          //   var mm = $('#min').val();
-          //   var ampm = $('#ampm').val();
-          //   var tt = hh+':'+mm+' '+ampm;
-          //   console.log(tt);
-          //   var i;
-          //   for(i=0; i<ttAr.length; i++){
-          //     var duplicate = false;
-          //     if(tt == ttAr[i]){
-          //       duplicate = true;
-          //       console.log('duplicate found');
-          //     }
-          //   }
-          //   if(duplicate == true){
-          //     alert(tt+' already added');
-          //   }else{
-          //   // this.timings=tt;
-          //     ttAr.push(tt);
-          //    // show(ttAr);
-          //   //  $scope.aa;
-          //     //$scope.aa=tt;
-          //   }
-          //   console.log(this.timings);
-
-          // });
-        });
 
         //$digest or $apply
         //this.timings=ttAr;
@@ -92,6 +81,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log(_this.theater);
           console.log(cities);
           _this.city = cities;
+        });
+
+        this.$http.get('/api/cinemas').then(function (response) {
+          _this.cinemas = response.data;
+          console.log(_this.cinemas);
+          _this.socket.syncUpdates('cinema', _this.cinemas);
         });
 
         var date = new Date();
@@ -160,8 +155,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         console.log(this.timings);
       }
     }, {
+      key: 'deleteCinema',
+      value: function deleteCinema(id) {
+        if (confirm("Click OK to confirm deletion or Cancel to abort.")) {
+          this.$http.delete('/api/cinemas/' + id).then(function (response) {
+            alert('Cinema Deleted Successfully!');
+          });
+        } else {
+          alert('Action aborted');
+        }
+      }
+    }, {
+      key: 'getPoster',
+      value: function getPoster() {
+        var _this2 = this;
+
+        var index = this.movie.findIndex(function (item) {
+          return item.Title === _this2.data.movieS;
+        });
+        console.log(index);
+        if (index !== -1) {
+          this.poster = this.movie[index].Poster;
+          console.log(this.poster);
+        }
+      }
+    }, {
       key: 'submit',
       value: function submit() {
+        var _this3 = this;
+
         var datemap = [];
         $('.days:checked').each(function () {
           datemap.push($(this).val());
@@ -195,6 +217,79 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
         console.log(valid);
+
+        var cinema = this.cinemas;
+        var dateCheck = true;
+        var timeCheck = true;
+
+        var sameD = [];
+        var sameT = [];
+        for (var i = 0; i < this.cinemas.length; i++) {
+
+          console.log(cinema[i].movie);
+          if (cinema[i].movie.theaters.city == items.city && cinema[i].movie.theaters.name == items.theater) {
+            var d1 = cinema[i].movie.theaters.dates;
+            var t1 = cinema[i].movie.theaters.time;
+            for (var i = 0; i < d1.length; i++) {
+              if (items.dates.indexOf(d1[i]) !== -1) {
+                console.log('same dates ' + d1[i]);
+                dateCheck = false;
+                sameD.push(d1[i]);
+              }
+            }
+
+            for (var i = 0; i < t1.length; i++) {
+              if (items.times.indexOf(t1[i]) !== -1) {
+                console.log('same timings ' + t1[i]);
+                timeCheck = false;
+                sameT.push(t1[i]);
+              }
+            }
+          }
+        }
+
+        var booked = function booked() {
+          if (dateCheck && timeCheck) {
+            return true;
+          } else if (timeCheck) {
+            return true;
+          } else if (dateCheck) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        if (valid && booked()) {
+          console.log(booked());
+          this.$http.post('/api/cinemas', {
+            movie: {
+              title: items.title,
+              // imdb: this.movie[index].imdb_id,
+              theaters: {
+                name: items.theater,
+                city: items.city,
+                dates: items.dates,
+                time: items.times
+              }
+
+            }
+          }).then(function (response) {
+            alert('Success!');
+            _this3.data.movieS = '';
+            _this3.data.theaterS = '';
+            _this3.data.cityS = '';
+            $('.days:checked').each(function () {
+              this.checked = false;
+            });
+            datemap = [];
+            _this3.timings = [];
+          });
+        } else if (!dateCheck && !timeCheck) {
+          alert('Theater is booked for [' + sameD + '] on time[' + sameT + ']');
+        } else {
+          alert('Details Missing');
+        }
       }
 
       // datepicker(){

@@ -5,17 +5,16 @@ import mongoose from 'mongoose';
 var CinemaSchema = new mongoose.Schema({
   movie: {
     title: String,
-    imdb: {
-      type:String,
-      unique: true
-    },
-    theaters: [{
+    // imdb: {
+    //   type:String,
+    //   unique: true
+    // },
+    theaters: {
       name: String,
-      dates: [{
-        date: Date,
-        time: [String]
-      }]
-    }]
+      city: String,
+      dates: [String],
+      time: [String]
+    }
 
   }
  
