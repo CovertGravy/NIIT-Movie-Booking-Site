@@ -30,6 +30,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       value: function $onInit() {
         var _this = this;
 
+        // $("img").error(function(){
+        //     $(this).hide();
+        // });
         //--------------------------------------------------------------------------------------------------
 
         // $('#add_time').click(function(){

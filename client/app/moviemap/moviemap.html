@@ -62,8 +62,8 @@
                     
             </div>
         </div>
-        <div class="col-md-4">
-                <img src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail" onerror="this.style.display = 'none'">
+        <div class="col-md-4" ng-if="moviemapCtrl.poster">
+                <img src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
         </div>
     </div>
     

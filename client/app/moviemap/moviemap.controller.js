@@ -23,6 +23,10 @@ class MoviemapComponent {
   }
 
   $onInit(){
+
+    // $("img").error(function(){
+    //     $(this).hide();
+    // });
 //--------------------------------------------------------------------------------------------------
 
   // $('#add_time').click(function(){
@@ -167,6 +171,7 @@ deleteCinema(id){
   }
 
 getPoster(){
+    
     var index = this.movie.findIndex(item => item.Title === this.data.movieS);
     console.log(index);
     if(index !== -1){
