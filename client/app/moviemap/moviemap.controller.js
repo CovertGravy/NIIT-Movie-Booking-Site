@@ -224,29 +224,42 @@ submit(){
   
   var sameD = [];
   var sameT = [];
-  for(var i=0; i<this.cinemas.length; i++){
+  for(var i=0; i<cinema.length; i++){
       
       console.log(cinema[i].movie);
       if(cinema[i].movie.theaters.city == items.city && cinema[i].movie.theaters.name == items.theater){
         var d1 = cinema[i].movie.theaters.dates;
         var t1 = cinema[i].movie.theaters.time;
-        for(var i=0; i<d1.length; i++){
-            if(items.dates.indexOf(d1[i]) !== -1){
-                console.log('same dates '+ d1[i]);
+        for(var j=0; j<d1.length; j++){
+            if(items.dates.indexOf(d1[j]) !== -1){
+                console.log('same dates '+ d1[j]);
                 dateCheck = false;
-                sameD.push(d1[i]);
+                sameD.push(d1[j]);
             }
         }
 
-        for(var i=0; i<t1.length; i++){
-            if(items.times.indexOf(t1[i]) !== -1){
-                console.log('same timings '+ t1[i]);
-                timeCheck = false;
-                sameT.push(t1[i]);
+        if(!dateCheck){
+            for(var k=0; k<t1.length; k++){
+                if(items.times.indexOf(t1[k]) !== -1){
+                    console.log('same timings '+ t1[k]);
+                    timeCheck = false;
+                    sameT.push(t1[k]);
+                }
             }
+        }
+
+        if(!dateCheck && timeCheck){
+            dateCheck = true;
         }
       }
       
+  }
+
+  var samet = [];
+  for(var i = 0; i<sameT.length; i++){
+    if(samet.indexOf(sameT[i]) == -1){
+      samet.push(sameT[i]);
+    }
   }
 
     var booked = function(){
@@ -262,7 +275,6 @@ submit(){
     }
 
   if(valid && booked()){
-      console.log(booked());
     this.$http.post('/api/cinemas', {
       movie: {
         title: items.title,
@@ -280,6 +292,7 @@ submit(){
       this.data.movieS = '';
       this.data.theaterS = '';
       this.data.cityS = '';
+      this.poster = '';
       $('.days:checked').each(function(){
         this.checked = false;
       });
@@ -287,7 +300,7 @@ submit(){
       this.timings = [];
     });
   }else if(!dateCheck && !timeCheck){
-      alert('Theater is booked for ['+sameD+'] on time['+sameT+']');
+      alert('Theater is booked for ['+sameD+'] on time['+samet+']');
   }else{
       alert('Details Missing');
   }
