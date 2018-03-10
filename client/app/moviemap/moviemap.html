@@ -1,111 +1,121 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Theater Reservation</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="movies">Select Movie:</label>
-                        <select ng-model="moviemapCtrl.data.movieS" ng-change="moviemapCtrl.getPoster()" class="form-control" id="movies">
-                                <option ng-repeat="movie in moviemapCtrl.movie">{{movie.Title}}</option>
-                        </select>
-                        <br>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-primary well">
+        <div class="panel-heading">
+          <h3 class="panel-title">Theater Reservation</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="movies">Select Movie:</label>
+            <select ng-model="moviemapCtrl.data.movieS" ng-change="moviemapCtrl.getPoster()" class="form-control" id="movies">
+              <option ng-repeat="movie in moviemapCtrl.movie">{{movie.Title}}</option>
+            </select>
+            <br>
 
-                        <label for="cities">Select City:</label>
-                        <select ng-model="moviemapCtrl.data.cityS" class="form-control" id="cities">
-                                <option ng-repeat="city in moviemapCtrl.city">{{city}}</option>
-                        </select>
-                        <br>
+            <label for="cities">Select City:</label>
+            <select ng-model="moviemapCtrl.data.cityS" class="form-control" id="cities">
+              <option ng-repeat="city in moviemapCtrl.city">{{city}}</option>
+            </select>
+            <br>
 
-                        <label for="theaters">Select Theater:</label>
-                        <select ng-model="moviemapCtrl.data.theaterS" class="form-control" id="theaters">
-                                <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.data.cityS">{{theater.Name}}</option>
-                        </select>
-                        <br>
+            <label for="theaters">Select Theater:</label>
+            <select ng-model="moviemapCtrl.data.theaterS" class="form-control" id="theaters">
+              <option ng-repeat="theater in moviemapCtrl.theater" ng-if="theater.City == moviemapCtrl.data.cityS">{{theater.Name}}</option>
+            </select>
+            <br>
 
-                        <label for="dates">Select Dates: </label>
-                        
-                        <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="day in moviemapCtrl.dates">
-                                <input type="checkbox" class="days" value="{{day}}" />
-                                <div class="state p-primary">
-                                        <i class="icon glyphicon glyphicon-ok"></i>
-                                        <label>{{day}}</label>
-                                </div>
-                        </div>
-                        
-                        <!-- <br>
+            <label for="dates">Select Dates: </label>
+
+            <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="day in moviemapCtrl.dates">
+              <input type="checkbox" class="days" value="{{day}}" />
+              <div class="state p-primary">
+                <i class="icon glyphicon glyphicon-ok"></i>
+                <label>{{day}}</label>
+              </div>
+            </div>
+
+            <!-- <br>
                         <input type="button" class="btn btn-info" value="Add dates" id="add_date">
                         <br> -->
-                        <br>
+            <br>
 
-                        <label for="time">Select Show Timings: </label>
-                        <select class="form-control input-sm small btn-sm" name="hour" id="hour" ng-model="moviemapCtrl.data.h" ng-init="moviemapCtrl.data.h = '01'">
-                                <option ng-repeat="h in moviemapCtrl.hour">{{h}}</option>
-                        </select>
-                        <select class="form-control input-sm small btn-sm" name="min" id="min" ng-model="moviemapCtrl.data.m" ng-init="moviemapCtrl.data.m = '00'">
-                                <option ng-repeat="m in moviemapCtrl.min">{{m}}</option>
-                        </select>
-                        <select class="form-control input-sm small btn-sm" name="ampm" id="ampm" ng-model="moviemapCtrl.data.ampm" ng-init="moviemapCtrl.data.ampm = 'am'">
-                                <option>am</option>
-                                <option>pm</option>
-                        </select>
+            <label for="time">Select Show Timings: </label>
+            <select class="form-control input-sm small btn-sm" name="hour" id="hour" ng-model="moviemapCtrl.data.h" ng-init="moviemapCtrl.data.h = '01'">
+              <option ng-repeat="h in moviemapCtrl.hour">{{h}}</option>
+            </select>
+            <select class="form-control input-sm small btn-sm" name="min" id="min" ng-model="moviemapCtrl.data.m" ng-init="moviemapCtrl.data.m = '00'">
+              <option ng-repeat="m in moviemapCtrl.min">{{m}}</option>
+            </select>
+            <select class="form-control input-sm small btn-sm" name="ampm" id="ampm" ng-model="moviemapCtrl.data.ampm" ng-init="moviemapCtrl.data.ampm = 'am'">
+              <option>am</option>
+              <option>pm</option>
+            </select>
 
-                        <input ng-click="moviemapCtrl.savetime()" type="button" value="Save" class="btn btn-info btn-sm" id="add_time">
-                        <br>
-                        <!-- <ul>
+            <input ng-click="moviemapCtrl.savetime()" type="button" value="Save" class="btn btn-info btn-sm" id="add_time">
+            <br>
+            <!-- <ul>
                                 <li ng-repeat="t in moviemapCtrl.timings">{{6+8}}</li>
                         </ul> -->
-                        <div>
-                                <div class="boxes" ng-repeat="t in moviemapCtrl.timings">{{t}}<span ng-click="moviemapCtrl.deletetime(t)" class="glyphicon glyphicon-remove pull-right"></span></div>
-                        </div>
+            <div>
+              <div class="boxes" ng-repeat="t in moviemapCtrl.timings">{{t}}
+                <span ng-click="moviemapCtrl.deletetime(t)" class="glyphicon glyphicon-remove pull-right"></span>
+              </div>
+            </div>
 
-                        <div>
-                                <button type="submit" class="btn btn-success btn-raised submit" ng-click="moviemapCtrl.submit()">Submit</button>
-                        </div>
-                            
-                    </div>
-                </div>
+            <div>
+              <button type="submit" class="btn btn-success btn-raised submit" ng-click="moviemapCtrl.submit()">Submit</button>
             </div>
+
+          </div>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-default well" ng-if="moviemapCtrl.poster">
-                <img src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
-            </div>
-        </div>
+      </div>
     </div>
-    
-        
-    <div class="row">
-        <div class="col-sm">
-            <div class="panel panel-warning well">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Cinema in Theaters</h3>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Movie</th>
-                            <th>City</th>
-                            <th>Theater</th>
-                            <th>Dates</th>
-                            <th>Timings</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="cinema in moviemapCtrl.cinemas">
-                            <td>{{cinema.movie.title}}</td>
-                            <td>{{cinema.movie.theaters.city}}</td>
-                            <td>{{cinema.movie.theaters.name}}</td>
-                            <td><span class="dt label label-success" ng-repeat="dates in cinema.movie.theaters.dates">{{dates}}</span></td>
-                            <td><span class="dt label label-info" ng-repeat="times in cinema.movie.theaters.time">{{times}}</span></td>
-                            <td><button class="btn btn-danger" ng-click="moviemapCtrl.deleteCinema(cinema._id)"><span class="glyphicon glyphicon-trash"></span></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
-        </div>
+    <div class="col-md-4">
+      <div class="panel panel-default well" ng-if="moviemapCtrl.poster">
+        <img src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
+      </div>
     </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-warning well">
+        <div class="panel-heading">
+          <h3 class="panel-title">Cinema in Theaters</h3>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Movie</th>
+              <th>City</th>
+              <th>Theater</th>
+              <th>Dates</th>
+              <th>Timings</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cinema in moviemapCtrl.cinemas">
+              <td>{{cinema.movie.title}}</td>
+              <td>{{cinema.movie.theaters.city}}</td>
+              <td>{{cinema.movie.theaters.name}}</td>
+              <td>
+                <span class="dt label label-success" ng-repeat="dates in cinema.movie.theaters.dates">{{dates}}</span>
+              </td>
+              <td>
+                <span class="dt label label-info" ng-repeat="times in cinema.movie.theaters.time">{{times}}</span>
+              </td>
+              <td>
+                <button class="btn btn-danger" ng-click="moviemapCtrl.deleteCinema(cinema._id)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
