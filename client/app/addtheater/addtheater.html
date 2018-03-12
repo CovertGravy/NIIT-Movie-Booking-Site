@@ -1,52 +1,54 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary well">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Add Theater</h3>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" ng-model="addtheaterCtrl.theater.name" class="form-control" placeholder="Theater Name">
-                            <br>
-                            <input type="text" ng-model="addtheaterCtrl.theater.location" class="form-control" placeholder="Location">
-                            <br>
-                            <input type="text" ng-model="addtheaterCtrl.theater.city" class="form-control" placeholder="city">
-                            <br>
-                            <input type="button" ng-click="addtheaterCtrl.addTheater()" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary well">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add Theater</h3>
         </div>
+        <div class="panel-body">
+          <form>
+            <div class="form-group">
+              <input type="text" ng-model="addtheaterCtrl.theater.name" class="form-control" placeholder="Theater Name">
+              <br>
+              <input type="text" ng-model="addtheaterCtrl.theater.location" class="form-control" placeholder="Location">
+              <br>
+              <input type="text" ng-model="addtheaterCtrl.theater.city" class="form-control" placeholder="city">
+              <br>
+              <input type="button" ng-click="addtheaterCtrl.addTheater()" class="btn btn-success" value="Add">
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-warning well">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Theaters</h3>
-                </div>
-                <table class="table table-info table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>City</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat = 'theater in addtheaterCtrl.TheaterList'>
-                            <td>{{theater.Name}}</td>
-                            <td>{{theater.Location}}</td>
-                            <td>{{theater.City}}</td>
-                            <td><button class="btn btn-danger" ng-click="addtheaterCtrl.deleteTheater(theater._id)">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-warning well">
+        <div class="panel-heading">
+          <h3 class="panel-title">Theaters</h3>
         </div>
+        <table class="table table-info table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='theater in addtheaterCtrl.TheaterList'>
+              <td>{{theater.Name}}</td>
+              <td>{{theater.Location}}</td>
+              <td>{{theater.City}}</td>
+              <td>
+                <button class="btn btn-danger" ng-click="addtheaterCtrl.deleteTheater(theater._id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

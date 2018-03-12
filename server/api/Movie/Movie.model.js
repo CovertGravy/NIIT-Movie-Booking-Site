@@ -9,7 +9,8 @@ var MovieSchema = new mongoose.Schema({
   Duration: Number,
   Year: String,
   Overview: String,
-  imdb_id:String
+  imdb_id:String,
+  backdrop: String
 
 });
 

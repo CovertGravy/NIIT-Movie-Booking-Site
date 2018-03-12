@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <div class="panel panel-primary well">
-        <div class="panel-heading">
-          <h3 class="panel-title">Theater Reservation</h3>
+      <div class="panel panel-primary well fix">
+        <div class="panel-heading zp">
+          <div class="panel-title ph text-center">Theater Reservation</div>
         </div>
         <div class="panel-body">
           <div class="form-group">
@@ -34,11 +34,7 @@
                 <label>{{day}}</label>
               </div>
             </div>
-
-            <!-- <br>
-                        <input type="button" class="btn btn-info" value="Add dates" id="add_date">
-                        <br> -->
-            <br>
+            
 
             <label for="time">Select Show Timings: </label>
             <select class="form-control input-sm small btn-sm" name="hour" id="hour" ng-model="moviemapCtrl.data.h" ng-init="moviemapCtrl.data.h = '01'">
@@ -57,11 +53,12 @@
             <!-- <ul>
                                 <li ng-repeat="t in moviemapCtrl.timings">{{6+8}}</li>
                         </ul> -->
-            <div>
-              <div class="boxes" ng-repeat="t in moviemapCtrl.timings">{{t}}
-                <span ng-click="moviemapCtrl.deletetime(t)" class="glyphicon glyphicon-remove pull-right"></span>
+            <div class='hid'>
+              <div class="label label-info boxes" ng-repeat="t in moviemapCtrl.timings"><span>{{t}}</span>
+                <span ng-click="moviemapCtrl.deletetime(t)" class="glyphicon glyphicon-remove"></span>
               </div>
             </div>
+            <!-- <span class="dt label label-info" ng-repeat="times in cinema.movie.theaters.time">{{times}}</span> -->
 
             <div>
               <button type="submit" class="btn btn-success btn-raised submit" ng-click="moviemapCtrl.submit()">Submit</button>
@@ -73,7 +70,7 @@
     </div>
     <div class="col-md-4">
       <div class="panel panel-default well" ng-if="moviemapCtrl.poster">
-        <img src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
+        <img ng-src="https://image.tmdb.org/t/p/w500/{{moviemapCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
       </div>
     </div>
   </div>
@@ -81,9 +78,9 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-warning well">
-        <div class="panel-heading">
-          <h3 class="panel-title">Cinema in Theaters</h3>
+      <div ng-show="moviemapCtrl.cinemas[0]" class="panel panel-warning well">
+        <div class="panel-heading zp">
+          <div class="panel-title ph text-center">Cinema in Theaters</div>
         </div>
         <table class="table">
           <thead>

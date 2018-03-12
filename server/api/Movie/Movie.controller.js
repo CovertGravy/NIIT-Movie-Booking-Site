@@ -85,6 +85,7 @@ export function create(req, res) {
         newMovie.Year =  req.body.release_date;
         newMovie.Overview =  req.body.overview;
         newMovie.imdb_id = req.body.imdb_id;
+        newMovie.backdrop = req.body.backdrop_path;
         newMovie.save((err, doc) =>{
           if(err){
 //throw err;

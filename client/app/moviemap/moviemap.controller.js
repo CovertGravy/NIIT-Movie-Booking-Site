@@ -20,6 +20,7 @@
       this.timings = [];
       this.data = {};
       this.poster;
+      this.backdrop;
     }
 
     $onInit() {
@@ -176,6 +177,7 @@
       console.log(index);
       if (index !== -1) {
         this.poster = this.movie[index].Poster;
+        this.backdrop = this.movie[index].backdrop;
         console.log(this.poster);
       }
 
@@ -194,6 +196,7 @@
 
       var items = {
         title: this.data.movieS,
+        backdrop: this.backdrop,
         city: this.data.cityS,
         theater: this.data.theaterS,
         dates: datemap,
@@ -278,6 +281,8 @@
         this.$http.post('/api/cinemas', {
           movie: {
             title: items.title,
+            poster: this.poster,
+            backdrop: items.backdrop,
             // imdb: this.movie[index].imdb_id,
             theaters: {
               name: items.theater,
