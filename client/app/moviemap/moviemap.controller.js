@@ -21,6 +21,8 @@
       this.data = {};
       this.poster;
       this.backdrop;
+      this.tagline;
+      this.ratings;
     }
 
     $onInit() {
@@ -178,6 +180,8 @@
       if (index !== -1) {
         this.poster = this.movie[index].Poster;
         this.backdrop = this.movie[index].backdrop;
+        this.tagline = this.movie[index].tagline;
+        this.ratings = this.movie[index].ratings;
         console.log(this.poster);
       }
 
@@ -200,7 +204,9 @@
         city: this.data.cityS,
         theater: this.data.theaterS,
         dates: datemap,
-        times: this.timings
+        times: this.timings,
+        tagline: this.tagline,
+        ratings: this.ratings
       };
       var valid = true;
       var check = Object.values(items);
@@ -265,6 +271,13 @@
         }
       }
 
+      var samed = [];
+      for(let i = 0; i < sameD.length; i++) {
+        if(samed.indexOf(sameD[i]) == -1) {
+          samed.push(sameD[i]);
+        }
+      }
+
       var booked = function () {
         if (dateCheck && timeCheck) {
           return true;
@@ -283,6 +296,8 @@
             title: items.title,
             poster: this.poster,
             backdrop: items.backdrop,
+            tagline: items.tagline,
+            ratings: items.ratings,
             // imdb: this.movie[index].imdb_id,
             theaters: {
               name: items.theater,
@@ -305,7 +320,7 @@
           this.timings = [];
         });
       } else if (!dateCheck && !timeCheck) {
-        alert('Theater is booked for [' + sameD + '] on time[' + samet + ']');
+        alert('Theater is booked for [' + samed + '] on time[' + samet + ']');
       } else {
         alert('Details Missing');
       }

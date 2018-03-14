@@ -24,6 +24,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.data = {};
       this.poster;
       this.backdrop;
+      this.tagline;
+      this.ratings;
     }
 
     _createClass(MoviemapComponent, [{
@@ -181,6 +183,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (index !== -1) {
           this.poster = this.movie[index].Poster;
           this.backdrop = this.movie[index].backdrop;
+          this.tagline = this.movie[index].tagline;
+          this.ratings = this.movie[index].ratings;
           console.log(this.poster);
         }
       }
@@ -204,7 +208,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           city: this.data.cityS,
           theater: this.data.theaterS,
           dates: datemap,
-          times: this.timings
+          times: this.timings,
+          tagline: this.tagline,
+          ratings: this.ratings
         };
         var valid = true;
         var check = Object.values(items);
@@ -267,6 +273,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
 
+        var samed = [];
+        for (var _i = 0; _i < sameD.length; _i++) {
+          if (samed.indexOf(sameD[_i]) == -1) {
+            samed.push(sameD[_i]);
+          }
+        }
+
         var booked = function booked() {
           if (dateCheck && timeCheck) {
             return true;
@@ -285,6 +298,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               title: items.title,
               poster: this.poster,
               backdrop: items.backdrop,
+              tagline: items.tagline,
+              ratings: items.ratings,
               // imdb: this.movie[index].imdb_id,
               theaters: {
                 name: items.theater,
@@ -307,7 +322,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this3.timings = [];
           });
         } else if (!dateCheck && !timeCheck) {
-          alert('Theater is booked for [' + sameD + '] on time[' + samet + ']');
+          alert('Theater is booked for [' + samed + '] on time[' + samet + ']');
         } else {
           alert('Details Missing');
         }

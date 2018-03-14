@@ -12,9 +12,9 @@ span{
 
 .boxes{
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 8px;
     margin-right: 2px;
-    font-size: 12px;
+    font-size: 14px;
     padding: 4px;
 }
 
@@ -35,8 +35,12 @@ label{
 }
 
 .dt{
-    margin-right: 2px;
+    margin-right: 4px;
+    margin-top: 4px;
+    cursor: default;
+    font-size: 14px;
 }
+
 
 /* .img-responsive{
     width: 293px;
@@ -54,11 +58,14 @@ label{
 
 .ph{
   font-size: 20px;
+  font-weight: bold;
 }
 
 .zp{
   padding: 5px;
 }
+
+
 
 
     

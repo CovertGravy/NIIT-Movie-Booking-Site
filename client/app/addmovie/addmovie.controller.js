@@ -76,6 +76,7 @@ class AddmovieComponent {
       else{
         alert('Movie ['+this.MovieData.title+'] added successfully.');
         this.MovieData = {};
+        this.MovieName = "";
 
       }
      

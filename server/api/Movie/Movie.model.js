@@ -10,7 +10,9 @@ var MovieSchema = new mongoose.Schema({
   Year: String,
   Overview: String,
   imdb_id:String,
-  backdrop: String
+  backdrop: String,
+  tagline: String,
+  ratings: String
 
 });
 

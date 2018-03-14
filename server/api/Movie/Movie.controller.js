@@ -86,6 +86,8 @@ export function create(req, res) {
         newMovie.Overview =  req.body.overview;
         newMovie.imdb_id = req.body.imdb_id;
         newMovie.backdrop = req.body.backdrop_path;
+        newMovie.tagline = req.body.tagline;
+        newMovie.ratings = req.body.vote_average;
         newMovie.save((err, doc) =>{
           if(err){
 //throw err;

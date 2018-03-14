@@ -7,6 +7,8 @@ var CinemaSchema = new mongoose.Schema({
     title: String,
     poster: String,
     backdrop: String,
+    tagline: String,
+    ratings: String,
     // imdb: {
     //   type:String,
     //   unique: true

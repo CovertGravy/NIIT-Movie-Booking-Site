@@ -78,6 +78,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             alert('Movie [' + _this3.MovieData.title + '] added successfully.');
             _this3.MovieData = {};
+            _this3.MovieName = "";
           }
         });
       }

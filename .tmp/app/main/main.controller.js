@@ -11,11 +11,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.$http = $http;
       this.socket = socket;
-      this.awesomeThings = [];
-
-      $scope.$on('$destroy', function () {
-        socket.unsyncUpdates('thing');
-      });
+      this.cinemas = [];
     }
 
     _createClass(MainController, [{
@@ -23,25 +19,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       value: function $onInit() {
         var _this = this;
 
-        this.$http.get('/api/things').then(function (response) {
-          _this.awesomeThings = response.data;
-          _this.socket.syncUpdates('thing', _this.awesomeThings);
+        this.$http.get('/api/cinemas').then(function (response) {
+          _this.cinemas = response.data;
+          console.log(_this.cinemas);
         });
-      }
-    }, {
-      key: 'addThing',
-      value: function addThing() {
-        if (this.newThing) {
-          this.$http.post('/api/things', {
-            name: this.newThing
-          });
-          this.newThing = '';
-        }
-      }
-    }, {
-      key: 'deleteThing',
-      value: function deleteThing(thing) {
-        this.$http.delete('/api/things/' + thing._id);
       }
     }]);
 
@@ -50,7 +31,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
   angular.module('yeomanAppApp').component('main', {
     templateUrl: 'app/main/main.html',
-    controller: MainController
+    controller: MainController,
+    controllerAs: 'mainCtrl'
   });
 })();
 //# sourceMappingURL=main.controller.js.map
