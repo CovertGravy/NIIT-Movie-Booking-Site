@@ -255,7 +255,9 @@
       var items = {
         title: this.data.movieS,
         backdrop: this.backdrop,
+        state: this.data.stateS,
         city: this.data.cityS,
+        location: this.data.locationS,
         theater: this.data.theaterS,
         dates: datemap,
         times: this.timings,
@@ -356,6 +358,8 @@
             theaters: {
               name: items.theater,
               city: items.city,
+              location:items.location,
+              state: items.state,
               dates: items.dates,
               time: items.times
             }
@@ -366,6 +370,8 @@
           this.data.movieS = '';
           this.data.theaterS = '';
           this.data.cityS = '';
+          this.data.locationS = '';
+          this.data.stateS = '';
           this.poster = '';
           $('.days:checked').each(function () {
             this.checked = false;

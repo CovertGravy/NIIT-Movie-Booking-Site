@@ -254,7 +254,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var items = {
           title: this.data.movieS,
           backdrop: this.backdrop,
+          state: this.data.stateS,
           city: this.data.cityS,
+          location: this.data.locationS,
           theater: this.data.theaterS,
           dates: datemap,
           times: this.timings,
@@ -353,6 +355,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               theaters: {
                 name: items.theater,
                 city: items.city,
+                location: items.location,
+                state: items.state,
                 dates: items.dates,
                 time: items.times
               }
@@ -363,6 +367,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this3.data.movieS = '';
             _this3.data.theaterS = '';
             _this3.data.cityS = '';
+            _this3.data.locationS = '';
+            _this3.data.stateS = '';
             _this3.poster = '';
             $('.days:checked').each(function () {
               this.checked = false;

@@ -12,6 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.$http = $http;
       this.socket = socket;
       this.cinemas = [];
+      this.display = [];
     }
 
     _createClass(MainController, [{
@@ -22,6 +23,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.$http.get('/api/cinemas').then(function (response) {
           _this.cinemas = response.data;
           console.log(_this.cinemas);
+
+          var display = [];
+          for (var i = 0; i < _this.cinemas.length; i++) {
+            var title = _this.cinemas[i].movie.title;
+            var duplicate = false;
+            if (i > 0) {
+              for (var j = i - 1; j >= 0; j--) {
+                if (title === _this.cinemas[j].movie.title) {
+                  duplicate = true;
+                }
+              }
+            }
+            if (!duplicate) {
+              display.push(_this.cinemas[i]);
+            }
+          }
+
+          _this.display = display;
+          console.log(_this.display);
         });
       }
     }, {

@@ -98,7 +98,9 @@
           <thead>
             <tr>
               <th>Movie</th>
+              <th>State</th>
               <th>City</th>
+              <th>Location</th>
               <th>Theater</th>
               <th>Dates</th>
               <th>Timings</th>
@@ -108,7 +110,9 @@
           <tbody>
             <tr ng-repeat="cinema in moviemapCtrl.cinemas">
               <td>{{cinema.movie.title}}</td>
+              <td>{{cinema.movie.theaters.state}}</td>              
               <td>{{cinema.movie.theaters.city}}</td>
+              <td>{{cinema.movie.theaters.location}}</td>              
               <td>{{cinema.movie.theaters.name}}</td>
               <td>
                 <span class="btn-default dt badge" ng-repeat="dates in cinema.movie.theaters.dates">{{dates}}</span>
