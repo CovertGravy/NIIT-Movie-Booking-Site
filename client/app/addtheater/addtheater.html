@@ -9,11 +9,17 @@
           <form>
             <div class="form-group">
               <input type="text" ng-model="addtheaterCtrl.theater.name" class="form-control" placeholder="Theater Name">
-              <br>
+            </div>
+            <div class="form-group">
               <input type="text" ng-model="addtheaterCtrl.theater.location" class="form-control" placeholder="Location">
-              <br>
-              <input type="text" ng-model="addtheaterCtrl.theater.city" class="form-control" placeholder="city">
-              <br>
+            </div>
+            <div class="form-group">
+              <input type="text" ng-model="addtheaterCtrl.theater.city" class="form-control" placeholder="City">
+            </div>
+            <div class="form-group">
+              <input type="text" ng-model="addtheaterCtrl.theater.state" class="form-control" placeholder="State">
+            </div>
+            <div class="form-group">
               <input type="button" ng-click="addtheaterCtrl.addTheater()" class="btn btn-success" value="Add">
             </div>
           </form>
@@ -34,6 +40,7 @@
               <th>Name</th>
               <th>Location</th>
               <th>City</th>
+              <th>State</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -42,6 +49,7 @@
               <td>{{theater.Name}}</td>
               <td>{{theater.Location}}</td>
               <td>{{theater.City}}</td>
+              <td>{{theater.State}}</td>
               <td>
                 <button class="btn btn-danger" ng-click="addtheaterCtrl.deleteTheater(theater._id)">Delete</button>
               </td>

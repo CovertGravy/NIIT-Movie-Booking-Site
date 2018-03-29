@@ -36,7 +36,8 @@ class AddtheaterComponent {
       this.$http.post('/api/theaters', {
         Name: this.theater.name,
         Location: this.theater.location,
-        City: this.theater.city
+        City: this.theater.city,
+        State: this.theater.state
       })
       .then((response) => {
         alert('Theater added successfully');

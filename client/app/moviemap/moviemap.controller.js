@@ -13,6 +13,10 @@
       this.movie = [];
       this.theater = [];
       this.city = [];
+      this.states = [];
+      this.locations = [];
+      this.scl;
+      this.sname;
       this.$http = $http;
       this.dates = [];
       this.hour = [];
@@ -23,6 +27,7 @@
       this.backdrop;
       this.tagline;
       this.ratings;
+      
     }
 
     $onInit() {
@@ -80,15 +85,64 @@
 
       this.$http.get('/api/theaters').then((response) => {
         this.theater = response.data;
-        var cities = [];
-        for (var i = 0; i < this.theater.length; i++) {
-          if (cities.indexOf(this.theater[i].City) == -1) {
+        let cities = [];
+        let states = [];
+        let locations = [];
+        let scl = {};
+        scl['states'] = {};
+        scl['cities'] = {};
+        let sname = [];
+        for (let i = 0; i < this.theater.length; i++) {
+          if (cities.indexOf(this.theater[i].City) === -1) {
             cities.push(this.theater[i].City);
+            
           }
+
+          if (states.indexOf(this.theater[i].State) === -1) {
+            states.push(this.theater[i].State);
+          }
+
+          if (locations.indexOf(this.theater[i].Location) === -1) {
+            locations.push(this.theater[i].Location);
+          }
+        }
+        
+        for(let i=0; i<states.length; i++){
+          scl.states[states[i]] = [];
+          for (let j = 0; j < this.theater.length; j++) {
+            if(this.theater[j].State === states[i]){
+              if(scl.states[states[i]].indexOf(this.theater[j].City) === -1){
+                scl.states[states[i]].push(this.theater[j].City);
+              }
+            }
+          }          
+        }
+
+        for(let i=0; i<cities.length; i++){
+          scl.cities[cities[i]] = [];
+          for (let j = 0; j < this.theater.length; j++) {
+            if(this.theater[j].City === cities[i]){
+              if(scl.cities[cities[i]].indexOf(this.theater[j].Location) === -1){
+                scl.cities[cities[i]].push(this.theater[j].Location);
+              }
+            }
+          }
+        }
+
+        for(let prop in scl.states){
+          sname.push(prop);
         }
         console.log(this.theater);
         console.log(cities);
+        console.log(states);
+        console.log(locations);
+        console.log(scl);
+        console.log(sname);
         this.city = cities;
+        this.states = states;
+        this.locations = locations;
+        this.scl = scl;
+        this.sname = sname;
       });
 
       this.$http.get('/api/cinemas').then((response) => {
@@ -101,16 +155,16 @@
       var day = moment(date);
       console.log(day);
 
-      var i;
-      for (i = 0; i < 6; i++) {
+      
+      for (let i = 0; i < 6; i++) {
         this.dates[i] = day.add(1, 'd').format('MMM DD');
       }
 
       console.log(this.dates);
 
-      var j;
+    
       var h = 1;
-      for (j = 0; j < 12; j++) {
+      for (let j = 0; j < 12; j++) {
         this.hour[j] = h;
         if (this.hour[j] < 10) {
           this.hour[j] = '0' + h;
@@ -118,8 +172,8 @@
         h++;
       }
 
-      var l;
-      for (l = 0; l < 12; l++) {
+      
+      for (let l = 0; l < 12; l++) {
         this.min[l] = l * 5;
         if (this.min[l] < 10) {
           this.min[l] = '0' + l * 5;

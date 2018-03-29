@@ -1,42 +1,71 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="slideshow well showcase"></div>
+    <div class="col-md-8">
+      <div class="slideshow well showcase">
+
+        <div id="carousel-id" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li ng-repeat="cinema in mainCtrl.cinemas" data-target="#carousel-id" data-slide-to="{{mainCtrl.cinemas.indexOf(cinema)}}" ng-class="{active:(mainCtrl.cinemas.indexOf(cinema) === 0)}"></li>
+            <!-- <li data-target="#carousel-id" data-slide-to="0" class=""></li>
+            <li data-target="#carousel-id" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-id" data-slide-to="2" class="active"></li> -->
+          </ol>
+          <div class="carousel-inner">
+            <div class="item" ng-class="{active:!$index}" ng-repeat="cinema in mainCtrl.cinemas">
+              <img ng-src="https://image.tmdb.org/t/p/original/{{cinema.movie.backdrop}}" alt="">
+              <div class="container">
+                <div class="carousel-caption">
+                  {{cinema.movie.title}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#carousel-id" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-id" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
       <div class="well movies">
-        <h3>In Cinemas</h3>
+        <!-- <h3 class="text-center" style="margin-top:0; margin-bottom:0">In Cinemas</h3> -->
         <div class="movie" ng-repeat="cinema in mainCtrl.cinemas">
           <img ng-src="https://image.tmdb.org/t/p/w342/{{cinema.movie.poster}}" alt="" class="img-thumbnail">
-          <button class="btn btn-info book">Book Now</button>
+          <button class="btn btn-info book" ng-click="mainCtrl.book(cinema)">Book Now</button>
           <button class="btn btn-warning pull-right info" data-toggle="modal" data-target="#brief{{$index}}">Info</button>
 
           <!-- Modal -->
           <div id="brief{{$index}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-               <div class="modal-content">
-                 <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                   <h4 class="modal-title text-center" id="myModalLabel">{{cinema.movie.title}}</h4>
-                 </div>
-                 <div class="modal-body">
-                   <p>Tagline: {{cinema.movie.tagline}}</p>
-                   <!-- Genre: {{cinema.movie.}} -->
-                   <!-- Duration: {{cinema.movie.title}} -->
-                   <p>Ratings: <span class="pull-right">{{cinema.movie.ratings}}</span></p>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
+                  <h4 class="modal-title text-center" id="myModalLabel">{{cinema.movie.title}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Tagline: {{cinema.movie.tagline}}</p>
+                  <!-- Genre: {{cinema.movie.}} -->
+                  <!-- Duration: {{cinema.movie.title}} -->
+                  <p>Ratings:
+                    <span class="pull-right">{{cinema.movie.ratings}}</span>
+                  </p>
 
-                 </div>
-                 <div class="modal-footer">
-                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn btn-primary">Save changes</button>
-                 </div>
-               </div>
-             </div>
-           </div>
-          
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

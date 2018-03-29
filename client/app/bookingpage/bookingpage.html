@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default well">
+        <form>
+          <div class="form-group">
+            <label for="Movie">Select Movie: </label>
+
+            <select name="Movie" ng-model="bookingpageCtrl.userdata.movie" ng-init="bookingpageCtrl.userdata.movie = bookingpageCtrl.select.movie.title"
+              class="form-control" ng-change="bookingpageCtrl.log()" required="required">
+              <option ng-repeat="cinema in bookingpageCtrl.cinemas">{{cinema.movie.title}}</option>
+            </select>
+
+            <!-- <button ng-click="bookingpageCtrl.log()">Log</button> -->
+
+          </div>
+          <div class="form-group">
+            <label for="dates">Select Date: </label>
+
+            <select name="dates" ng-model="bookingpageCtrl.userdata.date" class="form-control" required="required">
+              <option ng-repeat="day in bookingpageCtrl.select.movie.theaters.dates">{{day}}</option>
+            </select>
+            
+          </div>
+          <div class="form-group">
+            <label for="dates">Select Date: </label>
+
+            <select name="dates" ng-model="bookingpageCtrl.userdata.date" class="form-control" required="required">
+              <option ng-repeat="day in bookingpageCtrl.select.movie.theaters.dates">{{day}}</option>
+            </select>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="times">Select Time: </label>
+
+            <select name="times" ng-model="bookingpageCtrl.userdata.time" class="form-control" required="required">
+              <option ng-repeat="time in bookingpageCtrl.select.movie.theaters.time">{{time}}</option>
+            </select>
+            <!-- <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="time in bookingpageCtrl.message.theaters.time">
+                <input type="radio" name="times" value="{{time}}" />
+                <div class="state p-primary">
+                  <i class="icon glyphicon glyphicon-ok"></i>
+                  <label>{{time}}</label>
+                </div>
+              </div> -->
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--      Poster       -->
+    <div class="col-md-4">
+      <div class="panel panel-default well" ng-if="bookingpageCtrl.select">
+        <img ng-src="https://image.tmdb.org/t/p/w500/{{bookingpageCtrl.select.movie.poster}}" alt="No movie selected" class="img-responsive img-thumbnail">
+      </div>
+    </div>
+  </div>
+</div>

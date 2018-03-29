@@ -46,7 +46,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.$http.post('/api/theaters', {
             Name: this.theater.name,
             Location: this.theater.location,
-            City: this.theater.city
+            City: this.theater.city,
+            State: this.theater.state
           }).then(function (response) {
             alert('Theater added successfully');
           });

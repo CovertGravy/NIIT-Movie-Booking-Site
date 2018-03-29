@@ -16,6 +16,8 @@ var CinemaSchema = new mongoose.Schema({
     theaters: {
       name: String,
       city: String,
+      location: String,
+      state: String,
       dates: [String],
       time: [String]
     }

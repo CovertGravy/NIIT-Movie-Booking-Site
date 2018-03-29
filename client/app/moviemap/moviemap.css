@@ -6,9 +6,6 @@ span{
     cursor: pointer;
 }
 
-.pretty{
-    margin: 3px 3px 30px 3px;
-}
 
 .boxes{
     display: inline-block;
@@ -30,7 +27,7 @@ label{
 }
 
 .submit{
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 45%;
 }
 
@@ -48,7 +45,7 @@ label{
 } */
 
 .fix{
-  height: 608px;
+  height: 688px;
 }
 
 .hid{

@@ -24,6 +24,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log(_this.cinemas);
         });
       }
+    }, {
+      key: 'book',
+      value: function book(movie) {
+        console.log(movie);
+        sessionStorage.setItem("movie", JSON.stringify(movie));
+        location.href = "/bookingpage";
+      }
     }]);
 
     return MainController;

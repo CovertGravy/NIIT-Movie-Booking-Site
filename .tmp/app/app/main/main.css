@@ -1,2 +1,2 @@
-.movie{width:255px;height:400px;display:inline-block;margin:12px;padding:10px;border-style:inset}.movies{padding:10px}
+.movie{width:255px;height:400px;display:inline-block;margin:12px;padding:10px;border-style:inset}.movies{padding:10px 10px 10px 40px}#slideshow{width:1200px;height:500px}@media screen and (min-width:768px){.modal-dialog{position:absolute;top:35%;left:35%}}
 /*# sourceMappingURL=main.css.map */

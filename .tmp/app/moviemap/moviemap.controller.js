@@ -16,6 +16,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.movie = [];
       this.theater = [];
       this.city = [];
+      this.states = [];
+      this.locations = [];
+      this.scl;
+      this.sname;
       this.$http = $http;
       this.dates = [];
       this.hour = [];
@@ -79,14 +83,62 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.$http.get('/api/theaters').then(function (response) {
           _this.theater = response.data;
           var cities = [];
+          var states = [];
+          var locations = [];
+          var scl = {};
+          scl['states'] = {};
+          scl['cities'] = {};
+          var sname = [];
           for (var i = 0; i < _this.theater.length; i++) {
-            if (cities.indexOf(_this.theater[i].City) == -1) {
+            if (cities.indexOf(_this.theater[i].City) === -1) {
               cities.push(_this.theater[i].City);
             }
+
+            if (states.indexOf(_this.theater[i].State) === -1) {
+              states.push(_this.theater[i].State);
+            }
+
+            if (locations.indexOf(_this.theater[i].Location) === -1) {
+              locations.push(_this.theater[i].Location);
+            }
+          }
+
+          for (var _i = 0; _i < states.length; _i++) {
+            scl.states[states[_i]] = [];
+            for (var j = 0; j < _this.theater.length; j++) {
+              if (_this.theater[j].State === states[_i]) {
+                if (scl.states[states[_i]].indexOf(_this.theater[j].City) === -1) {
+                  scl.states[states[_i]].push(_this.theater[j].City);
+                }
+              }
+            }
+          }
+
+          for (var _i2 = 0; _i2 < cities.length; _i2++) {
+            scl.cities[cities[_i2]] = [];
+            for (var _j = 0; _j < _this.theater.length; _j++) {
+              if (_this.theater[_j].City === cities[_i2]) {
+                if (scl.cities[cities[_i2]].indexOf(_this.theater[_j].Location) === -1) {
+                  scl.cities[cities[_i2]].push(_this.theater[_j].Location);
+                }
+              }
+            }
+          }
+
+          for (var prop in scl.states) {
+            sname.push(prop);
           }
           console.log(_this.theater);
           console.log(cities);
+          console.log(states);
+          console.log(locations);
+          console.log(scl);
+          console.log(sname);
           _this.city = cities;
+          _this.states = states;
+          _this.locations = locations;
+          _this.scl = scl;
+          _this.sname = sname;
         });
 
         this.$http.get('/api/cinemas').then(function (response) {
@@ -99,16 +151,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var day = moment(date);
         console.log(day);
 
-        var i;
-        for (i = 0; i < 6; i++) {
+        for (var i = 0; i < 6; i++) {
           this.dates[i] = day.add(1, 'd').format('MMM DD');
         }
 
         console.log(this.dates);
 
-        var j;
         var h = 1;
-        for (j = 0; j < 12; j++) {
+        for (var j = 0; j < 12; j++) {
           this.hour[j] = h;
           if (this.hour[j] < 10) {
             this.hour[j] = '0' + h;
@@ -116,8 +166,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           h++;
         }
 
-        var l;
-        for (l = 0; l < 12; l++) {
+        for (var l = 0; l < 12; l++) {
           this.min[l] = l * 5;
           if (this.min[l] < 10) {
             this.min[l] = '0' + l * 5;
@@ -274,9 +323,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
 
         var samed = [];
-        for (var _i = 0; _i < sameD.length; _i++) {
-          if (samed.indexOf(sameD[_i]) == -1) {
-            samed.push(sameD[_i]);
+        for (var _i3 = 0; _i3 < sameD.length; _i3++) {
+          if (samed.indexOf(sameD[_i3]) == -1) {
+            samed.push(sameD[_i3]);
           }
         }
 
