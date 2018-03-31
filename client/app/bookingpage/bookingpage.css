@@ -9,6 +9,7 @@
   border: 0px outset wheat;
   box-shadow: 4px 4px 11px 0px black inset;
   border-radius: 20%;
+  cursor: pointer;
 }
 
 .lb{
@@ -22,15 +23,17 @@
 }
 
 .available{
-  background: green;
+  background: rgba(100,221,23 ,0.8);
   padding: 1px;
 }
 
 .selected{
-  background: orangered;
+  background: rgba(233,30,99 ,1);
 }
 
 .reserved{
-  background: grey;
+  background: rgba(96,125,139 ,1);
+  cursor: not-allowed;
+  text-shadow: 1px 1px 1px black;
 }
 

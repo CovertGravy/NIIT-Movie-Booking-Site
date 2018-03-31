@@ -44,7 +44,20 @@
         console.log(this.select);
       }
 
-      
+      $(document).ready(function(){
+        if($('td').hasClass('seat')){
+          $('.seat').addClass('available');
+          $('.reserved').removeClass('available');      
+        }         
+
+         
+
+        if($('td').hasClass('available')){
+          $('.available').on('click', function(){
+            $(this).toggleClass('selected available'); 
+          })
+        }
+      });
 
     }
 

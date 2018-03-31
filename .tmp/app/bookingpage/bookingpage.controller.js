@@ -50,6 +50,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.poster = a.movie.poster;
           console.log(this.select);
         }
+
+        $(document).ready(function () {
+          if ($('td').hasClass('seat')) {
+            $('.seat').addClass('available');
+            $('.reserved').removeClass('available');
+          }
+
+          if ($('td').hasClass('available')) {
+            $('.available').on('click', function () {
+              $(this).toggleClass('selected available');
+            });
+          }
+        });
       }
     }, {
       key: 'getPoster',
