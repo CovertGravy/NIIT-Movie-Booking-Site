@@ -1,61 +1,70 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <div class="panel panel-default well">
-        <form>
-          <div class="form-group">
-            <label for="Movie">Select Movie: </label>
+      <div class="panel panel-default well" style="height:519px;">
+        <div class="panel-heading zp">
+          <div class="panel-title text-center ph">Book Tickets</div>
+        </div>
+        <form class="panel-body">
+          <div class="form-group row">
+            <div class="col-xs-12">
+              <label for="Movie">Select Movie: </label>
 
-            <select name="Movie" ng-model="bookingpageCtrl.userdata.movie"
-              class="form-control" ng-change="bookingpageCtrl.getPoster()" required="required">
-              <option ng-repeat="name in bookingpageCtrl.names">{{name}}</option>
-            </select>
+              <select name="Movie" ng-model="bookingpageCtrl.userdata.movie" class="form-control" ng-change="bookingpageCtrl.getPoster()"
+                required="required">
+                <option ng-repeat="name in bookingpageCtrl.names">{{name}}</option>
+              </select>
 
-            <!-- <button ng-click="bookingpageCtrl.log()">Log</button> -->
+              <!-- <button ng-click="bookingpageCtrl.log()">Log</button> -->
 
+            </div>
           </div>
-          <div class="form-group">
-            <label for="states">Select State: </label>
+          <div class="form-group row">
+            <div class="col-xs-4">
+              <label for="states">Select State: </label>
 
-            <select name="states" ng-model="bookingpageCtrl.userdata.state" ng-mouseenter="bookingpageCtrl.getState()" class="form-control" required="required">
-              <option ng-repeat="state in bookingpageCtrl.states">{{state}}</option>
-            </select>
-            
+              <select name="states" ng-model="bookingpageCtrl.userdata.state" ng-mouseenter="bookingpageCtrl.getState()" class="form-control"
+                required="required">
+                <option ng-repeat="state in bookingpageCtrl.states">{{state}}</option>
+              </select>
+
+            </div>
+
+            <div class="col-xs-4">
+              <label for="cities" class="control-label">Select City: </label>
+
+              <select name="cities" ng-model="bookingpageCtrl.userdata.city" class="form-control" required="required">
+                <option ng-repeat="city in bookingpageCtrl.cities[bookingpageCtrl.userdata.state]">{{city}}</option>
+              </select>
+
+            </div>
+
+            <div class="col-xs-4">
+              <label for="locations">Select Location: </label>
+
+              <select name="location" ng-model="bookingpageCtrl.userdata.location" class="form-control" required="required">
+                <option ng-repeat="location in bookingpageCtrl.locations[bookingpageCtrl.userdata.city]">{{location}}</option>
+              </select>
+
+            </div>
           </div>
+          <div class="form-group row">
+            <div class="col-xs-6">
+              <label for="dates">Select Date: </label>
 
-          <div class="form-group">
-            <label for="cities">Select City: </label>
+              <select name="dates" ng-model="bookingpageCtrl.userdata.date" class="form-control" required="required">
+                <option ng-repeat="day in bookingpageCtrl.dates[bookingpageCtrl.userdata.location]">{{day}}</option>
+              </select>
 
-            <select name="cities" ng-model="bookingpageCtrl.userdata.city" class="form-control" required="required">
-              <option ng-repeat="city in bookingpageCtrl.cities[bookingpageCtrl.userdata.state]">{{city}}</option>
-            </select>
-            
-          </div>
+            </div>
 
-          <div class="form-group">
-            <label for="locations">Select Location: </label>
+            <div class="col-xs-6">
+              <label for="times">Select Time: </label>
 
-            <select name="location" ng-model="bookingpageCtrl.userdata.location" class="form-control" required="required">
-              <option ng-repeat="location in bookingpageCtrl.locations[bookingpageCtrl.userdata.city]">{{location}}</option>
-            </select>
-            
-          </div>
-          <div class="form-group">
-            <label for="dates">Select Date: </label>
-
-            <select name="dates" ng-model="bookingpageCtrl.userdata.date" class="form-control" required="required">
-              <option ng-repeat="day in bookingpageCtrl.dates[bookingpageCtrl.userdata.location]">{{day}}</option>
-            </select>
-            
-          </div>
-
-          <div class="form-group">
-            <label for="times">Select Time: </label>
-
-            <select name="times" ng-model="bookingpageCtrl.userdata.time" class="form-control" required="required">
-              <option ng-repeat="time in bookingpageCtrl.times[bookingpageCtrl.userdata.location]">{{time}}</option>
-            </select>
-            <!-- <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="time in bookingpageCtrl.message.theaters.time">
+              <select name="times" ng-model="bookingpageCtrl.userdata.time" class="form-control" required="required">
+                <option ng-repeat="time in bookingpageCtrl.times[bookingpageCtrl.userdata.location]">{{time}}</option>
+              </select>
+              <!-- <div class="pretty p-icon p-round p-jelly p-bigger" ng-repeat="time in bookingpageCtrl.message.theaters.time">
                 <input type="radio" name="times" value="{{time}}" />
                 <div class="state p-primary">
                   <i class="icon glyphicon glyphicon-ok"></i>
@@ -63,23 +72,42 @@
                 </div>
               </div> -->
 
+            </div>
           </div>
+          <div class="form-group row">
+            <div class="col-xs-2">
+              <label for="tickets">Tickets: </label>
 
-          <div class="form-group">
-            <label for="tickets">Tickets: </label>
+              <select name="tickets" ng-model="bookingpageCtrl.userdata.tickets" class="form-control" required="required">
+                <option ng-repeat="ticket in bookingpageCtrl.tickets">{{ticket}}</option>
+              </select>
 
-            <select name="tickets" ng-model="bookingpageCtrl.userdata.tickets" class="form-control small" required="required">
-              <option ng-repeat="ticket in bookingpageCtrl.tickets">{{ticket}}</option>
-            </select>
-            
+            </div>
           </div>
+          <div class="form-group row">
+          <div class="col-xs-4 pull-right">
+            <button type="submit" class="btn btn-success pull-right">Proceed to Seat Selection</button>
+          </div>
+        </div>
         </form>
+        <div class="panel-footer"></div>
       </div>
     </div>
     <!--      Poster       -->
     <div class="col-md-4">
-      <div class="panel panel-default well" ng-if="bookingpageCtrl.userdata.movie">
-        <img ng-src="https://image.tmdb.org/t/p/w500/{{bookingpageCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-thumbnail">
+      <div class="panel panel-default well" style="height:519px;" ng-if="bookingpageCtrl.userdata.movie">
+        <img ng-src="https://image.tmdb.org/t/p/w342/{{bookingpageCtrl.poster}}" alt="No movie selected" class="img-responsive center-block img-rounded">
+      </div>
+    </div>
+  </div>
+
+  <!--    Seat Selection   -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-warning well">
+        <div class="panel-heading zp">
+          <div class="panel-title ph text-center">Select Seat(s)</div>
+        </div>
       </div>
     </div>
   </div>
