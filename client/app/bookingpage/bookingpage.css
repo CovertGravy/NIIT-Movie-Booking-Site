@@ -1,0 +1,36 @@
+.seat{
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  position: relative;
+  text-align: center;
+  line-height: 2.5em;
+  border: 0px outset wheat;
+  box-shadow: 4px 4px 11px 0px black inset;
+  border-radius: 20%;
+}
+
+.lb{
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  line-height: 2.5em;
+  position: relative;
+  text-align: center;
+}
+
+.available{
+  background: green;
+  padding: 1px;
+}
+
+.selected{
+  background: orangered;
+}
+
+.reserved{
+  background: grey;
+}
+
