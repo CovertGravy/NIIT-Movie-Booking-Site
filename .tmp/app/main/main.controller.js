@@ -43,6 +43,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _this.display = display;
           console.log(_this.display);
         });
+
+        $('.carousel').carousel({
+          pause: 'none'
+        });
       }
     }, {
       key: 'book',

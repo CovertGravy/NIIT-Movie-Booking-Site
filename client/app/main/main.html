@@ -15,17 +15,17 @@
               <img ng-src="https://image.tmdb.org/t/p/original/{{cinema.movie.backdrop}}" alt="">
               <div class="container">
                 <div class="carousel-caption">
-                  {{cinema.movie.title}}
+                  <h3>{{cinema.movie.title}}</h3>
                 </div>
               </div>
             </div>
           </div>
-          <a class="left carousel-control" href="#carousel-id" data-slide="prev">
+          <!-- <a class="left carousel-control" href="#carousel-id" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
           <a class="right carousel-control" href="#carousel-id" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
+          </a> -->
         </div>
 
       </div>
@@ -34,7 +34,11 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="well movies">
+      <div class="panel panel-warning well movies">
+        <div class="panel-heading zp">
+          <div class="panel-title ph text-center">In Cinemas</div>
+        </div>
+        <div class="panel-body">
         <!-- <h3 class="text-center" style="margin-top:0; margin-bottom:0">In Cinemas</h3> -->
         <div class="movie" ng-repeat="cinema in mainCtrl.display">
           <img ng-src="https://image.tmdb.org/t/p/w342/{{cinema.movie.poster}}" alt="" class="img-thumbnail">
@@ -69,6 +73,7 @@
           </div>
 
         </div>
+      </div>
       </div>
     </div>
   </div>

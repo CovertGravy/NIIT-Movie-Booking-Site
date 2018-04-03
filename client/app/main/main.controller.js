@@ -37,6 +37,10 @@
         this.display = display;
         console.log(this.display);
       });
+
+      $('.carousel').carousel({
+        pause: 'none'
+      });
     }
 
     book(movie)
