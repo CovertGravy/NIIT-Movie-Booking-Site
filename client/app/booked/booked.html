@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Thank You!</h1>
+      <div class="panel panel-danger well">
+        <div class="panel-heading zp">
+          <div class="panel-title ph tw">Your Ticket
+            <!-- <span class="text-center center">{{bookedCtrl.booked.movie}}</span> -->
+            <span class="pull-right">TicketID: {{bookedCtrl.id}}</span>
+          </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-4 pull-right well" style="width:250px;">
+                <img ng-src="https://image.tmdb.org/t/p/w342/{{bookedCtrl.movie.Poster}}" alt="" class="img-responsive img-rounded" style="height:310px;" >
+                </div>
+                <div class="col-md-8 well">
+                
+                    <table class="table table-striped table-bordered" style="margin-bottom: 0px; background-color:inherit;">
+                      <tbody>
+                        <tr ng-repeat="(key, val) in bookedCtrl.booked">
+                          <td class="cap tw">{{key}}</td>
+                          <td class="text-center tw">{{val.toString()}}</td>
+                        </tr>
+          
+                      </tbody>
+                    </table>
+                  
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

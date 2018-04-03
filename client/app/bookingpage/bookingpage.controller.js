@@ -6,7 +6,16 @@
     constructor($http) {
       this.$http = $http;
       this.select;
-      this.userdata = {};
+      this.userdata = {
+        movie: '',
+        state: '',
+        city: '',
+        location: '',
+        date: '',
+        time: '',
+        tickets: '',
+        seats: []
+      };
       this.cinemas;
       this.names;
       this.states;
@@ -15,7 +24,9 @@
       this.dates;
       this.times;
       this.poster;
-      this.tickets = [1,2,3,4,5,6,7,8,9,10];
+      this.tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      this.seats = [];
+      this.reserved;
     }
 
 
@@ -36,35 +47,49 @@
         console.log(this.names);
       });
 
+      this.$http.get('/api/tickets').then(response => {
+        this.reserved = response.data;
+        console.log(this.reserved);
+      });
+
       if (sessionStorage.movie) {
         let a = JSON.parse(sessionStorage.movie);
         this.select = a;
         this.userdata.movie = a.movie.title;
+        console.log(this.userdata);
         this.poster = a.movie.poster;
         console.log(this.select);
       }
+      // let select = this.seats;
+      // $(document).ready(function(){
+      //   if($('td').hasClass('seat')){
+      //     $('.seat').addClass('available');
+      //     $('.reserved').removeClass('available');      
+      //   }
 
-      $(document).ready(function(){
-        if($('td').hasClass('seat')){
-          $('.seat').addClass('available');
-          $('.reserved').removeClass('available');      
-        }         
 
-         
 
-        if($('td').hasClass('available')){
-          $('.available').on('click', function(){
-            $(this).toggleClass('selected available'); 
-          })
-        }
-      });
+      //   if($('td').hasClass('available')){
+      //     $('.available').on('click', function(){
+      //       if(select.indexOf(this.id) === -1){
+      //         select.push(this.id);
+      //       }else{
+      //         select.splice(select.indexOf(this.id), 1);
+      //       }
+      //       console.log(select);
+      //       $(this).toggleClass('selected available'); 
+      //     });
+      //   }
+
+      // });
 
     }
 
-    getPoster(){
+
+    getPoster() {
       let poster = '';
-      for(let i=0; i<this.cinemas.length; i++){
-        if(this.userdata.movie === this.cinemas[i].movie.title){
+      for (let i = 0; i < this.cinemas.length; i++) {
+        if (this.userdata.movie === this.cinemas[i].movie.title) {
           poster = this.cinemas[i].movie.poster;
           break;
         }
@@ -84,7 +109,7 @@
       for (let i = 0; i < this.cinemas.length; i++) {
         if (this.cinemas[i].movie.title === this.userdata.movie) {
 
-          if(poster === ''){
+          if (poster === '') {
             poster = this.cinemas[i].movie.poster;
           }
 
@@ -140,37 +165,175 @@
       console.log(this.times);
       console.log(this.poster);
       console.log(this.userdata);
+      console.log(this.seats);
     }
 
-    log() {
-      console.log(this.userdata);
+    proceed() {
+      let data = true;
+      let missing = [];
+      for (let prop in this.userdata) {
+        let value = this.userdata[prop];
 
-      let index = this.cinemas.findIndex(item => item.movie.title === this.userdata.movie);
+        if (value === '') {
+          data = false;
+          missing.push(prop);
+        } else {
+          console.log(value);
+        }
 
-      // if(index !== -1){
-      //   this.select = this.cinemas[index];
-      // }
+      }
 
-      // let index;
-      // for(let i=0; i<this.cinemas.length; i++){
-      //   if(this.cinemas[i].movie.title === this.userdata.movie){
-      //     index = this.cinemas[i];
-      //     break;
-      //   }
-      // }
+      console.log(missing);
+      if(data) {
+
+        let reserveSeats = [];
+        let datauser = this.userdata;
+        let ticketBooked = this.reserved;
+        // for(let i=0; i<this.reserved.length; i++){
+        //   if(this.reserved[i].movie === this.userdata.movie){
+
+        //     }
+        //   }
+
+        ticketBooked.forEach(function (ticket) {
+          let count = 0;
+          for (let prop in datauser) {
+            if (prop !== 'tickets' && prop !== 'seats' && ticket[prop] === datauser[prop]) {
+              count++;
+            }
+          }
+          console.log(count);
+          if(count === 6){
+            ticket.seats.forEach(function(t){
+              reserveSeats.push(t);
+            });
+          }
+        });
+      
+        console.log(reserveSeats);
+
+        //-----------------------------------------------------------------
 
 
-      // this.select = index;
+        let select = this.seats;
+        $(document).ready(function() {
 
-      console.log(index);
+          if ($('td').hasClass('seat')) {
+            $('.seat').addClass('available');
+            // $('.reserved').removeClass('available');
+          }
+
+          if($('td').hasClass('seat')){
+            $('.seat').each(function(){
+              if($(this).hasClass('reserved')){
+                $(this).removeClass('reserved'); 
+                // $(this).removeClass('available');
+                $(this).removeClass('selected');               
+              }
+              if($(this).hasClass('selected')){
+                $(this).removeClass('selected');  
+              }
+              if(reserveSeats.indexOf(this.id) !== -1){
+                $(this).addClass('reserved');
+                if($(this).hasClass('available')){
+                  $(this).removeClass('available');
+                }   
+                if($(this).hasClass('selected')){
+                  $(this).removeClass('selected');
+                }
+              }
+            });
+          }
+
+          
+
+          let count=0;
+
+          // off() prevented multiple onclick event firing.
+          
+            $('.available').off().on('click', function () {
+              console.log("totla count"+(count++));
+              if (select.indexOf(this.id) === -1) {
+                
+                
+                console.log(select.indexOf(this.id)); 
+                select.push(this.id);
+                $(this).toggleClass('selected available');
+              } else {
+               // select.pop();
+               select.splice(select.indexOf(this.id), 1);
+               $(this).toggleClass('selected available');
+               
+              }
+              console.log(select);
+             
+            });
+          
+
+        });
+        $("#seatselect").modal('show');
+
+
+//---------------------------------------------------------------------------
+       
+      }else {
+        alert(`Please select ${missing}`);
+      }
+
 
     }
+  
+    
+  reset(){
+    this.seats.length=0;
+ }
+  
+
+
+  getSeats(){
+    if (this.seats[0] !== undefined && this.seats.length == this.userdata.tickets) {
+      this.userdata.seats = this.seats;
+      sessionStorage.setItem('ticket', JSON.stringify(this.userdata));
+      $('#seatselect').modal('hide');
+      location.href = '/payment';
+    } else if (this.seats.length === 0) {
+      alert('Seat not selected!');
+    } else {
+      alert(`Please select ${this.userdata.tickets} seat(s).`);
+    }
+
+    console.log(this.userdata);
   }
-  angular.module('yeomanAppApp')
-    .component('bookingpage', {
-      templateUrl: 'app/bookingpage/bookingpage.html',
-      controller: BookingpageComponent,
-      controllerAs: 'bookingpageCtrl'
-    });
 
-})();
+  log() {
+    console.log(this.userdata);
+
+    let index = this.cinemas.findIndex(item => item.movie.title === this.userdata.movie);
+
+    // if(index !== -1){
+    //   this.select = this.cinemas[index];
+    // }
+
+    // let index;
+    // for(let i=0; i<this.cinemas.length; i++){
+    //   if(this.cinemas[i].movie.title === this.userdata.movie){
+    //     index = this.cinemas[i];
+    //     break;
+    //   }
+    // }
+
+
+    // this.select = index;
+
+    console.log(index);
+
+  }
+}
+  angular.module('yeomanAppApp')
+  .component('bookingpage', {
+    templateUrl: 'app/bookingpage/bookingpage.html',
+    controller: BookingpageComponent,
+    controllerAs: 'bookingpageCtrl'
+  });
+
+}) ();

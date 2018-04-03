@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-warning well">
+        <div class="panel-heading zp">
+          <div class="panel-title text-center ph">Booking Summary</div>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr ng-repeat="(key, val) in paymentCtrl.userdata">
+                <td class="text-center cap">{{key}}</td>
+                <td class="text-center">{{val.toString()}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-info well">
+        <div class="panel-heading">
+          <div class="panel-title ph">Payment Details</div>
+          <img class="img-responsive pull-right" style="margin-top:-36px;" src="http://i76.imgup.net/accepted_c22e0.png">
+        </div>
+        <div class="panel-body">
+          <form>
+            <div class="col-md-12">
+              <label for="cardnumber">CARD NUMBER</label>
+              <div class="input-group" style="margin-bottom:10px;">
+                <input type="text" ng-model="paymentCtrl.cardnumber" name="cardnumber" id="cardnumber" ng-blur="paymentCtrl.valid($event)" class="form-control" placeholder="Valid Card Number" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-credit-card"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="expiry">EXPIRY DATE</label>
+              <div class="input-group" style="margin-bottom:10px;">
+
+                <input type="text" ng-model="paymentCtrl.expiry" name="expiry" id="expiry" ng-blur="paymentCtrl.valid($event)" class="form-control" placeholder="MM/YY">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="cvc">CV CODE</label>
+              <div class="input-group">
+                <input type="tel" ng-model="paymentCtrl.cvc" name="cvc" id="cvc" ng-blur="paymentCtrl.valid($event)" class="form-control" placeholder="CVC">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-credit-card"></span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <label for="cardholder">NAME ON CARD</label>
+              <div class="input-group" style="margin-bottom: 10px;">
+                <input type="text" ng-model="paymentCtrl.cardname" name="cardholder" id="cardholder" ng-blur="paymentCtrl.valid($event)" class="form-control" placeholder="Name">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <button id="pay" ng-click="paymentCtrl.pay()" class="btn btn-info btn-lg pull-right" style="margin-top:6px;">Pay Now</button>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
