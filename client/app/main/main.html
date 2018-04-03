@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8">
-      <div class="slideshow well showcase">
+    <div class="col-md-12">
+      <div class="slideshow showcase">
 
         <div id="carousel-id" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -12,7 +12,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="item" ng-class="{active:!$index}" ng-repeat="cinema in mainCtrl.cinemas">
-              <img ng-src="https://image.tmdb.org/t/p/original/{{cinema.movie.backdrop}}" alt="">
+              <img ng-src="https://image.tmdb.org/t/p/w1280/{{cinema.movie.backdrop}}" alt="" class="img-responsive img-rounded center-block">
               <div class="container">
                 <div class="carousel-caption">
                   <h3>{{cinema.movie.title}}</h3>
