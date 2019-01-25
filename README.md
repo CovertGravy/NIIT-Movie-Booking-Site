@@ -29,3 +29,14 @@ Run `grunt build` for building and `grunt serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+
+# Screenshots
+<img src='screenshot(movie)/Screenshot_1.png'>
+<img src='screenshot(movie)/Screenshot_2.png'>
+<img src='screenshot(movie)/Screenshot_3.png'>
+<img src='screenshot(movie)/Screenshot_4.png'>
+<img src='screenshot(movie)/Screenshot_5.png'>
+<img src='screenshot(movie)/Screenshot_6.png'>
+<img src='screenshot(movie)/Screenshot_7.png'>
+<img src='screenshot(movie)/Screenshot_8.png'>
+<img src='screenshot(movie)/Screenshot_9.png'>
